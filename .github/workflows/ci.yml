@@ -1,0 +1,22 @@
+name: Basic CI Pipeline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: List files
+      run: ls -R
+
+    - name: Run shell scripts syntax check
+      run: |
+        bash -n backup.sh
+        bash -n log_cleanup.sh
+        bash -n disk_monitor.sh
